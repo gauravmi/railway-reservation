@@ -1,0 +1,9 @@
+apply plugin:'java'
+apply plugin:'java-library'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+    compileOnly("org.apache.geode:geode-core:1.2.0")
+    compile("org.postgresql:postgresql:9.4-1206-jdbc4")
+    compile("org.springframework:spring-jdbc:2.0.6")
+}
