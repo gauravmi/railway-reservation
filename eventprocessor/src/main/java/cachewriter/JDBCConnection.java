@@ -1,9 +1,11 @@
+package cachewriter;
+
 import org.postgresql.ds.PGPoolingDataSource;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.System.getenv;
 
-final class JDBCConnection {
+public class JDBCConnection {
 
     private static PGPoolingDataSource dataSource;
 

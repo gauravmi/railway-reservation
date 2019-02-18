@@ -1,3 +1,6 @@
+package cachewriter;
+
+import exception.DBSyncFailedException;
 import models.Booking;
 import org.apache.geode.cache.asyncqueue.AsyncEvent;
 import org.apache.geode.cache.asyncqueue.AsyncEventListener;
@@ -5,17 +8,18 @@ import org.postgresql.ds.PGPoolingDataSource;
 import org.slf4j.Logger;
 import repository.BookingRepository;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
+import static cachewriter.JDBCConnection.getDataSourceInstance;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class SimpleEventListener implements AsyncEventListener {
+final class BookingEventListener implements AsyncEventListener {
     private BookingRepository bookingRepository;
-    private static Logger logger = getLogger(SimpleEventListener.class);
+    private static Logger logger = getLogger(BookingEventListener.class);
 
-    public SimpleEventListener() {
-        PGPoolingDataSource dataSourceInstance = JDBCConnection.getDataSourceInstance();
+    public BookingEventListener() {
+        PGPoolingDataSource dataSourceInstance = getDataSourceInstance();
         bookingRepository = new BookingRepository(dataSourceInstance);
     }
 
@@ -28,7 +32,12 @@ public class SimpleEventListener implements AsyncEventListener {
     private void processEvent(AsyncEvent event) {
         logger.info("Event received {}", event.getEventSequenceID());
         Booking booking = (Booking) event.getDeserializedValue();
-        bookingRepository.insert(booking);
+        try {
+            bookingRepository.insert(booking);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DBSyncFailedException(e);
+        }
     }
 
     @Override
