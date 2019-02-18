@@ -7,4 +7,8 @@ public class Booking {
     public String getStatus() {
         return status;
     }
+
+    public String getUserId() {
+        return userId;
+    }
 }
