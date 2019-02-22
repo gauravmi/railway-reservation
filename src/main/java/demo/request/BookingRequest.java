@@ -1,12 +1,16 @@
 package demo.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotNull;
 
 public class BookingRequest {
     @NotNull
+    @JsonProperty
     private String userId;
 
     @NotNull
+    @JsonProperty
     private String name;
 
     public BookingRequest(){}

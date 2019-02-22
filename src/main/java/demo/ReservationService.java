@@ -3,6 +3,8 @@ package demo;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
+import demo.repository.GemfireRepository;
+import demo.service.BookingService;
 
 public class ReservationService extends Service<ReservationConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -16,6 +18,8 @@ public class ReservationService extends Service<ReservationConfiguration> {
 
     @Override
     public void run(ReservationConfiguration configuration, Environment environment) throws Exception {
-        environment.addResource(new BookingResource());
+        GemfireRepository gemfireRepository = new GemfireRepository();
+        BookingService bookingService = new BookingService(gemfireRepository);
+        environment.addResource(new BookingResource(bookingService));
     }
 }

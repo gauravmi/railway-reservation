@@ -14,6 +14,12 @@ import static javax.ws.rs.core.MediaType.*;
 @Consumes(APPLICATION_JSON)
 public class BookingResource {
 
+    private BookingService bookingService;
+
+    BookingResource(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
     @GET
     @Path("index")
     public BookingResponse index(){
@@ -23,6 +29,6 @@ public class BookingResource {
     @POST
     @Path("book")
     public BookingResponse book(BookingRequest bookingRequest) {
-        return new BookingService().book(bookingRequest);
+        return bookingService.book(bookingRequest);
     }
 }
