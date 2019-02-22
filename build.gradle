@@ -10,19 +10,18 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'application'
+
 
 allprojects {
     repositories {
         mavenCentral()
     }
 }
+mainClassName = 'demo.ReservationService'
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Reservation System',
-                'Implementation-Version': "1.0.0",
-                'Main-Class': 'demo.ReservationService'
-    }
+run {
+    args 'server', './src/main/resources/reservation-system.yml'
 }
 
 test {
