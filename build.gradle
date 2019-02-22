@@ -2,9 +2,6 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
-    }
 }
 
 plugins {
@@ -13,8 +10,6 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 allprojects {
     repositories {
@@ -22,11 +17,27 @@ allprojects {
     }
 }
 
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Reservation System',
+                'Implementation-Version': "1.0.0",
+                'Main-Class': 'demo.ReservationService'
+    }
+}
+
+test {
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
 sourceCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compileOnly("org.apache.geode:geode-core:1.2.0")
+    compile("org.apache.geode:geode-core:1.2.0") {
+        exclude group: 'com.fasterxml.jackson.core'
+    }
+    compile("com.yammer.dropwizard:dropwizard-core:0.6.2")
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'

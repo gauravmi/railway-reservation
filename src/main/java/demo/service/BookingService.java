@@ -1,10 +1,10 @@
 package demo.service;
 
-import demo.models.BookingRequest;
-import demo.models.BookingResponse;
+import demo.request.BookingRequest;
+import demo.response.BookingResponse;
 
-import static demo.models.BookingResponse.FAILED;
-import static demo.models.BookingResponse.SUCCESS;
+import static demo.response.BookingResponse.FAILED;
+import static demo.response.BookingResponse.SUCCESS;
 
 public class BookingService {
 
