@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 CREATE DATABASE geodetest;
 
 CREATE USER geodetest;

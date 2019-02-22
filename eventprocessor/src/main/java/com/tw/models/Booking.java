@@ -1,4 +1,4 @@
-package models;
+package com.tw.models;
 
 public class Booking {
     private String userId;

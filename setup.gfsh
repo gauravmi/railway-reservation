@@ -1,2 +1,0 @@
-create region --name=GeodeTest --type=REPLICATE
-create async-event-queue --id=simpleQueue --listener=cachewriter.BookingEventListener

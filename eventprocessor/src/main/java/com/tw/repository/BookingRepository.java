@@ -1,6 +1,6 @@
-package repository;
+package com.tw.repository;
 
-import models.Booking;
+import com.tw.models.Booking;
 import org.postgresql.ds.PGPoolingDataSource;
 
 import java.sql.Connection;

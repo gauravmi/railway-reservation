@@ -1,17 +1,17 @@
-package cachewriter;
+package com.tw.cachewriter;
 
-import exception.DBSyncFailedException;
-import models.Booking;
+import com.tw.exception.DBSyncFailedException;
+import com.tw.models.Booking;
 import org.apache.geode.cache.asyncqueue.AsyncEvent;
 import org.apache.geode.cache.asyncqueue.AsyncEventListener;
 import org.postgresql.ds.PGPoolingDataSource;
 import org.slf4j.Logger;
-import repository.BookingRepository;
+import com.tw.repository.BookingRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import static cachewriter.JDBCConnection.getDataSourceInstance;
+import static com.tw.cachewriter.JDBCConnection.getDataSourceInstance;
 import static org.slf4j.LoggerFactory.getLogger;
 
 final class BookingEventListener implements AsyncEventListener {
