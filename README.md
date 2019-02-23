@@ -34,13 +34,12 @@ Prequisites :
 # Run Application
 sh run.sh
 
-## api
+# Api
 
+* Booking request :
 curl -X POST \
   http://localhost:8080/book \
   -H 'Content-Type: application/json' \
-  -H 'Postman-Token: 3a5ece9e-62a2-47f0-9826-36bf9e90fcf8' \
-  -H 'cache-control: no-cache' \
   -d '{
 	"userId":"100312",
 	"userName": "user51",
@@ -49,3 +48,8 @@ curl -X POST \
 	"train": "t2"
 }'
 
+
+* List all bookings
+curl -X GET \
+  http://localhost:8080/bookings \
+  -H 'Content-Type: application/json' \

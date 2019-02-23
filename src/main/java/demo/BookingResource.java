@@ -1,10 +1,13 @@
 package demo;
 
+import com.tw.models.Booking;
 import demo.request.BookingRequest;
 import demo.response.BookingResponse;
 import demo.service.BookingService;
 
 import javax.ws.rs.*;
+
+import java.util.List;
 
 import static java.util.UUID.randomUUID;
 import static javax.ws.rs.core.MediaType.*;
@@ -30,5 +33,11 @@ public class BookingResource {
     @Path("book")
     public BookingResponse book(BookingRequest bookingRequest) {
         return bookingService.book(bookingRequest, randomUUID().toString());
+    }
+
+    @Path("bookings")
+    @GET
+    public List<Booking> findAll() {
+        return bookingService.findAll();
     }
 }

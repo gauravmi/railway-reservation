@@ -5,6 +5,8 @@ import demo.repository.GemfireRepository;
 import demo.request.BookingRequest;
 import demo.response.BookingResponse;
 
+import java.util.List;
+
 import static demo.response.BookingResponse.FAILED;
 import static demo.response.BookingResponse.SUCCESS;
 
@@ -30,5 +32,9 @@ public class BookingService {
         } catch(Exception e) {
             return FAILED;
         }
+    }
+
+    public List<Booking> findAll() {
+        return gemfireRepository.getAll();
     }
 }

@@ -8,6 +8,7 @@ import org.apache.geode.pdx.ReflectionBasedAutoSerializer;
 
 class TestGemfireClient {
     private ClientCache cache;
+    Region<Object, Object> bookingRegion;
 
     public TestGemfireClient() {
         cache = new ClientCacheFactory()
@@ -15,11 +16,16 @@ class TestGemfireClient {
                 .setPdxReadSerialized(true)
                 .setPdxSerializer(new ReflectionBasedAutoSerializer())
                 .create();
+
+        bookingRegion = cache.getRegion("booking");
     }
 
     Booking read(String key) {
-        Region<Object, Object> region = cache.getRegion("booking");
-        return (Booking) region.get(key);
+        return (Booking) bookingRegion.get(key);
+    }
+
+    void write(String key, Booking booking) {
+        bookingRegion.put(key, booking);
     }
 
     public void close() {
