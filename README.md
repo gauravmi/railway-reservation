@@ -8,13 +8,13 @@ Prequisites :
 * Gemfire 9.5.1 https://gemfire.docs.pivotal.io/97/gemfire/getting_started/installation/install_intro.html
 
 
-#setup instructions
+## Setup instructions
 
 ## Postgres Setup
 * Make sure you have psql command line utility installed. run "psql --version"
 * execute "psql -f ./migration/db.sql" from terminal
 
-##Gemfire setup
+## Gemfire setup
 * Build project -> "~/.gradlew clean build"
 * Build shadowJar -> "~/.gradlew clean shadowJar"
 * Publish event processor library to local maven -> "./gradlew publishToMavenLocal"
