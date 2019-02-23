@@ -8,7 +8,7 @@ start server --name=server1 --max-heap=500m --J=-DDB_HOST=localhost --J=-DDB_POR
 
 create region --name=booking --type=REPLICATE
 
-deploy --jar=/Users/gauravingalkar/workspace/railway-reservation/eventprocessor/build/libs/eventprocessor-all.jar
+deploy --jar=/tmp/eventprocessor-1.1.jar
 
 create async-event-queue --dispatcher-threads=1 --id=bookingQueue  --persistent=true --listener=com.tw.listener.BookingEventListener --batch-size=2
 

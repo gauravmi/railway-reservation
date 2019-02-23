@@ -7,6 +7,7 @@ import demo.response.BookingResponse;
 
 import static demo.response.BookingResponse.FAILED;
 import static demo.response.BookingResponse.SUCCESS;
+import static java.util.UUID.*;
 
 public class BookingService {
     private GemfireRepository gemfireRepository;
@@ -17,7 +18,14 @@ public class BookingService {
 
     public BookingResponse book(BookingRequest bookingRequest) {
         try{
-            Booking booking = new Booking(bookingRequest.getUserId(), bookingRequest.getName());
+            Booking booking = new Booking(
+                    bookingRequest.getUserId(),
+                    randomUUID().toString(),
+                    bookingRequest.getUserName(),
+                    bookingRequest.getFromStation(),
+                    bookingRequest.getToStation(),
+                    bookingRequest.getTrain()
+            );
             gemfireRepository.write(booking.getKey(), booking);
             return SUCCESS;
         } catch(Exception e) {

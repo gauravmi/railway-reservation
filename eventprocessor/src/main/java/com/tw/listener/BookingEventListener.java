@@ -5,7 +5,6 @@ import com.tw.models.Booking;
 import com.tw.repository.BookingRepository;
 import org.apache.geode.cache.asyncqueue.AsyncEvent;
 import org.apache.geode.cache.asyncqueue.AsyncEventListener;
-import org.postgresql.ds.PGPoolingDataSource;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -42,9 +41,9 @@ public class BookingEventListener implements AsyncEventListener {
     private void syncToDatabase(AsyncEvent event, BookingRepository bookingRepository) {
         try {
             Booking booking = (Booking) event.getDeserializedValue();
-            logger.info("inserting record with key {}", booking.getKey());
+            logger.info("Inserting record with key {}", booking.getKey());
             bookingRepository.insert(booking);
-            logger.info("inserted record with key {}", booking.getKey());
+            logger.info("Inserted record with key {}", booking.getKey());
         } catch (Exception e) {
             e.printStackTrace();
             throw new DBSyncFailedException(e);

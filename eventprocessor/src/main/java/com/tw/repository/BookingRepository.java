@@ -20,10 +20,33 @@ public class BookingRepository {
         try(Connection connection = dataSourceInstance.getConnection();
             Statement statement = connection.createStatement()) {
 
-            statement.execute("insert into booking(user_id, name) " +
-                    "values(\'" + booking.getUserId() + "\',\'" + booking.getName() + "\')");
+            statement.execute(buildInsertStatement(booking)
+            );
+
         } catch (Exception e){
             throw new DBSyncFailedException("could not insert new record", e);
         }
+    }
+
+    private String buildInsertStatement(Booking booking) {
+
+        String query = "insert into booking(" +
+                "user_id," +
+                "booking_id," +
+                "username," +
+                "from_station," +
+                "to_station," +
+                "train) " +
+                "values(" + "\'" +
+                booking.getUserId() + "\',\'" +
+                booking.getBookingId() + "\',\'" +
+                booking.getUsername() + "\',\'" +
+                booking.getFromStation() + "\',\'" +
+                booking.getToStation() + "\',\'" +
+                booking.getTrain() + "\'" +
+                "" +
+                ")";
+        System.out.println("query = " + query);
+        return query;
     }
 }

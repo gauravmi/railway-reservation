@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 CREATE DATABASE railway_reservation;
 
 CREATE USER test;
@@ -10,8 +8,6 @@ ALTER USER test WITH SUPERUSER;
 
 GRANT ALL PRIVILEGES ON DATABASE railway_reservation TO test;
 
-ALTER ROLE test WITH CREATEDB CREATEROLE;
-
 GRANT CONNECT ON DATABASE railway_reservation TO test;
 
 GRANT USAGE ON SCHEMA PUBLIC TO test;
@@ -20,6 +16,13 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA PUBLIC TO test;
 
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA PUBLIC TO test;
 
-\c railway_reservation;
+\connect railway_reservation;
 
-CREATE TABLE booking(USER_ID INT, NAME VARCHAR(10));
+CREATE TABLE booking(
+    user_id VARCHAR(40) UNIQUE,
+    username VARCHAR(40),
+    booking_id varchar(40) UNIQUE,
+    from_station varchar(40),
+    to_station varchar(40),
+    train varchar(40)
+);

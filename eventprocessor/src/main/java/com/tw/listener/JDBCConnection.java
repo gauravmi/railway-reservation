@@ -9,7 +9,6 @@ import static java.lang.System.getenv;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class JDBCConnection {
-    private static Logger logger = getLogger(JDBCConnection.class);
     private static PGPoolingDataSource dataSource;
 
     public static PGPoolingDataSource getDataSourceInstance() {
@@ -19,7 +18,6 @@ public class JDBCConnection {
             dataSource = configureDataSource();
         }catch(Exception e) {
             String message = "could not create data source";
-            logger.error(message, e);
             throw new RuntimeException(message, e);
         }
         return dataSource;
