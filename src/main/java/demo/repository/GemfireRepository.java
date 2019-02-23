@@ -1,6 +1,6 @@
 package demo.repository;
 
-import demo.models.Booking;
+import com.tw.models.Booking;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;

@@ -1,6 +1,6 @@
 package demo.service;
 
-import demo.models.Booking;
+import com.tw.models.Booking;
 import demo.repository.GemfireRepository;
 import demo.request.BookingRequest;
 import demo.response.BookingResponse;

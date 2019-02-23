@@ -1,3 +1,0 @@
-create region --name=booking --type=REPLICATE
-create async-event-queue --id
-=simpleQueue --listener=com.tw.cachewriter.BookingEventListener
