@@ -29,10 +29,14 @@ public class BookingEventListener implements AsyncEventListener {
         logger.info("event de-serialized value {}", event.getDeserializedValue());
         logger.info("event key {}", event.getKey());
         logger.info("event operation {}", event.getOperation());
-        if(!event.getPossibleDuplicate()) {
+        if(isNotDuplicate(event)) {
             BookingRepository bookingRepository = new BookingRepository(getDataSourceInstance());
             syncToDatabase(event, bookingRepository);
         }
+    }
+
+    private boolean isNotDuplicate(AsyncEvent event) {
+        return !event.getPossibleDuplicate();
     }
 
     private void syncToDatabase(AsyncEvent event, BookingRepository bookingRepository) {
@@ -44,8 +48,6 @@ public class BookingEventListener implements AsyncEventListener {
         } catch (Exception e) {
             e.printStackTrace();
             throw new DBSyncFailedException(e);
-        } finally {
-            bookingRepository.close();
         }
     }
 

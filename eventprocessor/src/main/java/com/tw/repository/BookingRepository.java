@@ -26,8 +26,4 @@ public class BookingRepository {
             throw new DBSyncFailedException("could not insert new record", e);
         }
     }
-
-    public void close() {
-        dataSourceInstance.close();
-    }
 }

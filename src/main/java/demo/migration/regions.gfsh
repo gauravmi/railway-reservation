@@ -1,8 +1,15 @@
-create region --name=booking --type=REPLICATE
-deploy --jar=/Users/gauravingalkar/workspace/railway-reservation/eventprocessor/build/libs/eventprocessor-all.jar
-create async-event-queue --dispatcher-threads=1 --id=bookingQueue  --persistent=true --listener=com.tw.listener.BookingEventListener --batch-size=2
-alter region --name=booking --async-event-queue-id=bookingQueue
-
 start locator --name=locator
 
-start server --name=server1 --J=-DDB_HOST=localhost --J=-DDB_PORT=5432 --J=-DDB_NAME=railway_reservation --J=-DDB_PASS=test --J=-DDB_USER=test
+configure pdx --read-serialized=true
+
+configure pdx --disk-store=DEFAULT
+
+start server --name=server1 --max-heap=500m --J=-DDB_HOST=localhost --J=-DDB_PORT=5432 --J=-DDB_NAME=railway_reservation --J=-DDB_PASS=test --J=-DDB_USER=test
+
+create region --name=booking --type=REPLICATE
+
+deploy --jar=/Users/gauravingalkar/workspace/railway-reservation/eventprocessor/build/libs/eventprocessor-all.jar
+
+create async-event-queue --dispatcher-threads=1 --id=bookingQueue  --persistent=true --listener=com.tw.listener.BookingEventListener --batch-size=2
+
+alter region --name=booking --async-event-queue-id=bookingQueue
