@@ -1,12 +1,12 @@
 package demo;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
 import demo.request.BookingRequest;
 import demo.response.BookingResponse;
 import demo.service.BookingService;
 
 import javax.ws.rs.*;
 
+import static java.util.UUID.randomUUID;
 import static javax.ws.rs.core.MediaType.*;
 
 @Path("/")
@@ -29,6 +29,6 @@ public class BookingResource {
     @POST
     @Path("book")
     public BookingResponse book(BookingRequest bookingRequest) {
-        return bookingService.book(bookingRequest);
+        return bookingService.book(bookingRequest, randomUUID().toString());
     }
 }
