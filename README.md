@@ -49,7 +49,7 @@ curl -X POST \
 }'
 
 
-* List all bookings
+* List all bookings : 
 curl -X GET \
   http://localhost:8080/bookings \
   -H 'Content-Type: application/json' \
