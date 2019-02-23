@@ -1,6 +1,6 @@
 # railway-reservation
 
-Implementation of gemfire Write behind cache event handling using -
+Implementation of gemfire Write behind cache event handling -
 
 Prequisites :
 * java8 
