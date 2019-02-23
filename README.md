@@ -34,3 +34,18 @@ Prequisites :
 # Run Application
 sh run.sh
 
+## api
+
+curl -X POST \
+  http://localhost:8080/book \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 3a5ece9e-62a2-47f0-9826-36bf9e90fcf8' \
+  -H 'cache-control: no-cache' \
+  -d '{
+	"userId":"100312",
+	"userName": "user51",
+	"fromStation": "s2",
+	"toStation": "s2",
+	"train": "t2"
+}'
+
