@@ -22,11 +22,11 @@ Prequisites :
 * Open gfsh shell from <GEMFIRE_INSTALLATION>/bin/gfsh
 * run command "run --file=./migration/regions.gfsh"
 * Run below commands to verify the installation
-** list members -> should list locator and server1
-** list deployed -> should list eventprocessor-1.1.jar 
-** list regions -> should list "booking" region
-** list async-event-queue -> should list "bookingQueue" entry
-** describe region --name=booking -> make sure "async-event-queue-id" is mapped to "bookingQueue"
+* list members -> should list locator and server1
+* list deployed -> should list eventprocessor-1.1.jar 
+* list regions -> should list "booking" region
+* list async-event-queue -> should list "bookingQueue" entry
+* describe region --name=booking -> make sure "async-event-queue-id" is mapped to "bookingQueue"
 
 # Run  Build
 ./gradlew clean build
