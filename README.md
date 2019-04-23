@@ -15,10 +15,22 @@ Prequisites :
 * execute "psql -f ./migration/db.sql" from terminal
 
 ## Gemfire setup
-* Build project -> "~/.gradlew clean build"
-* Build shadowJar -> "~/.gradlew clean shadowJar"
-* Publish event processor library to local maven -> "./gradlew publishToMavenLocal"
-* copy lib jar to /tmp as gemfire script picks up from this location -> "cp ~/.m2/<path-to-event-processor-lib>/eventprocessor-1.1.jar /tmp"
+* Build project
+ ```bash
+     ./gradlew clean build
+ ```
+* Build shadowJar 
+```bash
+    ~/.gradlew clean shadowJar
+```
+* Publish event processor library to local maven 
+```bash
+    ./gradlew publishToMavenLocal
+```
+* copy lib jar to /tmp as gemfire script picks up from this location
+```bash
+    cp ~/.m2/repository/com/tw/eventprocessor/1.1/eventprocessor-1.1.jar /tmp
+```
 * Open gfsh shell from <GEMFIRE_INSTALLATION>/bin/gfsh
 * run command "run --file=./migration/regions.gfsh"
 * Run below commands to verify the installation
@@ -29,27 +41,35 @@ Prequisites :
 * describe region --name=booking -> make sure "async-event-queue-id" is mapped to "bookingQueue"
 
 # Run  Build
-./gradlew clean build
+```bash
+    ./gradlew clean build
+```
 
 # Run Application
-sh run.sh
+```bash
+    sh run.sh
+```
 
 # Api
 
 * Booking request :
-curl -X POST \
-  http://localhost:8080/book \
-  -H 'Content-Type: application/json' \
-  -d '{
-	"userId":"100312",
-	"userName": "user51",
-	"fromStation": "s2",
-	"toStation": "s2",
-	"train": "t2"
-}'
+```bash
+    curl -X POST \
+      http://localhost:8080/book \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "userId":"100312",
+        "userName": "user51",
+        "fromStation": "s2",
+        "toStation": "s2",
+        "train": "t2"
+    }'
+```
 
 
 * List all bookings : 
-curl -X GET \
-  http://localhost:8080/bookings \
-  -H 'Content-Type: application/json' \
+```bash
+    curl -X GET \
+      http://localhost:8080/bookings \
+      -H 'Content-Type: application/json'
+```
