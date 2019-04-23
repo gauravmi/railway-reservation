@@ -38,7 +38,7 @@ dependencies {
         exclude group: 'com.fasterxml.jackson.core'
     }
     compile("com.yammer.dropwizard:dropwizard-core:0.6.2")
-    compile("com.tw:eventprocessor:1.1")
+    compile project('eventprocessor')
 
     testImplementation('org.mockito:mockito-all:1.8.4')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
